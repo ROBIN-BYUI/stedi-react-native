@@ -10,9 +10,12 @@ function Setting() {
       <Button
       title="Log In"
       onPress={() => Alert.alert('Simple Button pressed')}
-    />
+      
+      />
+    
       </View>
     )
+    
   }
 
 export default Setting;
