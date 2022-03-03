@@ -1,8 +1,11 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput, } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, Button } from "react-native";
 
 
-const UselessTextInput = () => {
+export default function Login(props){
+
+
+
   const [text, onChangeText] = React.useState("Username");
   const [number, onChangeNumber] = React.useState(null);
 
@@ -15,6 +18,7 @@ const UselessTextInput = () => {
         placeholder = "Username"
         keyboardType = "Alphanumeric"
       />
+      <Button title = "send two-step verification  " onPress={()=>sendcode(text)}></Button>
       <TextInput
         style={styles.input}
         onChangeText={onChangeNumber}
@@ -23,7 +27,7 @@ const UselessTextInput = () => {
         keyboardType="Alphanumeric"
 
       />
-      
+      <Button title = "log in " onPress={()=>props.setUserloggedIn(true)}></Button>
      
     </SafeAreaView>
   );
@@ -38,4 +42,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UselessTextInput;
+function sendcode(phonenumber) {
+  fetch(('https://dev.stedi.me/towfactorlogin/' + phonenumber) , {
+    method: 'POST'
+} );
+}
