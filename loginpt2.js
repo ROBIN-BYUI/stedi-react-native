@@ -13,7 +13,7 @@ style={styles.input}
 onChangeText={onChangeText}
 value={text}
 placeholder="Phone Number"
-keyboardType="numeric"
+keyboardType="alphanumeric"
 />
 <Button title="Send  Password" onPress={()=>sendCode(text)}></Button>
 
@@ -22,7 +22,7 @@ style={styles.input}
 onChangeText={onChangeNumber}
 value={number}
 placeholder=" Password"
-keyboardType="numeric"
+keyboardType="alphanumeric"
 />
 <Button title="log In" onPress={()=>{
 

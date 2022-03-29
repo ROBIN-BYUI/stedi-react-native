@@ -15,7 +15,7 @@ export default function Login(props){
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
-        placeholder = "Username"
+        placeholder = "Phone number"
         keyboardType = "Alphanumeric"
       />
       <Button title = "send two-step verification  " onPress={()=>sendcode(text)}></Button>
