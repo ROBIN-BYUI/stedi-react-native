@@ -18,7 +18,7 @@ export default function Login(props){
         placeholder = "Phone number"
         keyboardType = "Alphanumeric"
       />
-      <Button title = "send two-step verification  " onPress={()=>sendcode(text)}></Button>
+      <Button title = "send two-step verification  " onPress={()=> fetch('https://dev.stedi.me/twofactorlogin/'+text, {method: "post"})}></Button>
       <TextInput
         style={styles.input}
         onChangeText={onChangeNumber}
@@ -27,8 +27,29 @@ export default function Login(props){
         keyboardType="Alphanumeric"
 
       />
-      <Button title = "log in " onPress={()=>props.setUserloggedIn(true)}></Button>
-     
+      <Button title = "log in " onPress={()=> fetch('https://dev.stedi.me/twofactorlogin', {
+        method: "POST",
+        body: JSON.stringify({
+          phoneNumber: text,
+          oneTimePassword: number}),
+      })
+      .then((response) => {
+        if(response.status == 200){
+          const token = response.text()
+          return token}
+          else{(Alert.alert("unable to login"))}
+        })
+        .then((token) => {fetch('https://dev.stedi.me/validate/' + token,
+        {method: "GET"})
+      .then((reponse) => {
+        if(response.status==200){
+          response.text().then(function (email) {props.setUserEmail(email)
+          props.setUserLoggedIn(true)})}
+          else{(Alert.alert("unable to login"))}
+        }
+      )
+      })}
+     />
     </SafeAreaView>
   );
 };
