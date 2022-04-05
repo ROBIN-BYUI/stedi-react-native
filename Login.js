@@ -44,6 +44,7 @@ export default function Login(props){
       .then((response) => {
         if(response.status==200){
           response.text().then(function (email) {props.setUserEmail(email)
+            console.log(email)
           props.setUserLoggedIn(true)})}
           else{(Alert.alert("unable to login"))}
         }
