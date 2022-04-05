@@ -8,7 +8,7 @@ const Home = (props) => {
 
   return (
     <View>
-      <Bar />
+      <Bar userEmail = {props.userEmail}/>
       <Icons />
     </View>
   );
